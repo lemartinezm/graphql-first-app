@@ -1,5 +1,9 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import {
+  ApolloServerPluginLandingPageLocalDefault,
+  ApolloServerPluginLandingPageProductionDefault,
+} from "@apollo/server/plugin/landingPage/default";
 
 const typeDefs = `#graphql
   type Address {
@@ -75,6 +79,12 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  plugins: [
+    ApolloServerPluginLandingPageLocalDefault({
+      footer: false,
+      embed: true,
+    }),
+  ],
 });
 
 const { url } = await startStandaloneServer(server, {
