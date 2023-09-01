@@ -85,6 +85,7 @@ const server = new ApolloServer({
       embed: true,
     }),
   ],
+  introspection: true,
 });
 
 const { url } = await startStandaloneServer(server, {
